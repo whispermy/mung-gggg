@@ -17,21 +17,31 @@ export default function Loading02() {
   background-repeat: no-repeat;
   `;
 
+  const Spin = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  `
+
   return (
     <div>
-      <Container>
-        {/* <ProgressiveImg
-          src={url}
-        /> */}
-      </Container>
-      <Link to="/">
-        <h3>Please wating...</h3>
+      <Spin>
         <PropagateLoader color="#36d7b7"
-        loading
-        size={20}
-        speedMultiplier={0.8}
-        />
-      </Link>
+          loading
+          size={20}
+          speedMultiplier={0.8}
+          />
+      </Spin>
+      {/* TODO: image blur and music load */}
+
+      <Container>
+        {/* TODO: home button create and routing */}
+        <Link to="/">
+          <h3>Please wating...</h3>
+        </Link>
+
+        {/* TODO: music button create */}
+      </Container>
     </div>
   );
 };
