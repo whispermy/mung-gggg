@@ -21,7 +21,9 @@ export default function Loading02() {
   position: fixed;
   top: 50%;
   left: 50%;
-  `
+  `;
+
+  {/* TODO: button container create*/}
 
   return (
     <div>
@@ -37,7 +39,7 @@ export default function Loading02() {
       <Container>
         {/* TODO: home button create and routing */}
         <Link to="/">
-          <h3>Please wating...</h3>
+          <h3>HOME</h3>
         </Link>
 
         {/* TODO: music button create */}
