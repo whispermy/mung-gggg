@@ -1,8 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
+import ProgressiveImg from "./ProgressiveImg";
 
-const Loading02 = () =>{
+export default function Loading02() {
+  const imgsrc = useLocation();
+  const url = imgsrc.state.data;
   return (
     <div>
       <Link to="/">
@@ -13,9 +16,17 @@ const Loading02 = () =>{
         speedMultiplier={0.8}
         />
       </Link>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      
+      <ProgressiveImg
+        src={url}
+      />
     </div>
   );
 };
 
-export default Loading02;
 
