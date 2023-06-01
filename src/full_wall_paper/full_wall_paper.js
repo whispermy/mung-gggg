@@ -17,6 +17,25 @@ export default function Loading02() {
   background-repeat: no-repeat;
   `;
 
+  const Container2 = styled.div`
+  position: absolute;
+  bottom: 5%;
+  right: 2.5%;
+  
+  border: none;
+  padding: 1%;
+  font-weight: normal;
+  font-size: 50px;
+  `;
+
+  const Containerbtn = styled.div`
+  position: related;
+  bottom: 0%
+  border: none;
+  font-weight: normal;
+  font-size: 50px;
+  `;
+
   const Spin = styled.div`
   position: fixed;
   top: 50%;
@@ -27,6 +46,7 @@ export default function Loading02() {
 
   return (
     <div>
+      {/* TODO: image blur and music load */}
       <Spin>
         <PropagateLoader color="#36d7b7"
           loading
@@ -34,15 +54,14 @@ export default function Loading02() {
           speedMultiplier={0.8}
           />
       </Spin>
-      {/* TODO: image blur and music load */}
-
+      {/* TODO: music button create */}
+      {/* TODO: home button create and routing */}
       <Container>
-        {/* TODO: home button create and routing */}
-        <Link to="/">
-          <h3>HOME</h3>
-        </Link>
-
-        {/* TODO: music button create */}
+        <Container2>
+          <Containerbtn>
+            <Link to="/">HOME</Link>
+          </Containerbtn>
+        </Container2>
       </Container>
     </div>
   );
