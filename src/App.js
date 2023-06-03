@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Loading02 from './full_wall_paper/full_wall_paper';
 import Home from './home/home';
+import Page3 from './page3/page3';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           <Routes>
           <Route path="/" element={<Home />} />
           <Route path="full_wall_paper" element={<Loading02 />} />
+          <Route path="page3 " element={<Page3 />} />
         </Routes>
         </BrowserRouter>
     </div>

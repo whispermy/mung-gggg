@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
 import { styled } from "styled-components";
 
 export default function Loading02() {
+  const audioRef = useRef(null);
   const imgsrc = useLocation();
   const url = imgsrc.state.data;
+
   const Container = styled.div`
   position: absolute;
   top: 0;
@@ -42,7 +44,31 @@ export default function Loading02() {
   left: 50%;
   `;
 
+  const AudioPlayer = styled.audio`
+    /* Add your custom styles here */
+    width: 100%;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+  `;
+
   {/* TODO: button container create*/}
+  const handleAudioEnded = () => {
+    audioRef.current.currentTime = 0; // 음원을 처음으로 되감기
+    audioRef.current.play(); // 음원 재생
+  };
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.addEventListener("ended", handleAudioEnded);
+    }
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.removeEventListener("ended", handleAudioEnded);
+      }
+    };
+  }, []);
 
   return (
     <div>
@@ -59,7 +85,11 @@ export default function Loading02() {
       <Container>
         <Container2>
           <Containerbtn>
+            <AudioPlayer controls ref={audioRef} autoPlay>
+              <source src={`${url}/audio.mp3`} type="audio/mpeg" />
+            </AudioPlayer>
             <Link to="/">HOME</Link>
+            <Link to="/page3">Detail</Link>
           </Containerbtn>
         </Container2>
       </Container>
