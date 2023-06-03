@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import imagesLoaded from "imagesloaded";
+import React, { useEffect, useRef } from "react";
 
 function CardCarousel() {
   const buttons = useRef({ prev: null, next: null });
@@ -10,8 +10,8 @@ function CardCarousel() {
 
   useEffect(() => {
     cardsContainerEl.current = document.querySelector(".cards__wrapper");
-    buttons.current.prev = document.querySelector(".cardList__btn.btn--left");
-    buttons.current.next = document.querySelector(".cardList__btn.btn--right");
+    buttons.current.prev = document.querySelector(".btn--left");
+    buttons.current.next = document.querySelector(".btn--right");
 
     const prevButton = buttons.current.prev;
     const nextButton = buttons.current.next;
@@ -46,7 +46,7 @@ function CardCarousel() {
       );
       gsap.set([buttons.current.prev, buttons.current.next], {
         pointerEvents: "none",
-        opacity: "0",
+        opacity: "100%",
       });
 
       images.forEach((image) => {
@@ -80,133 +80,220 @@ function CardCarousel() {
   }, []);
 
   function swapCards(direction) {
-    const currentCardEl =
-      cardsContainerEl.current.querySelector(".current--card");
-    const previousCardEl =
-      cardsContainerEl.current.querySelector(".previous--card");
+    const currentCardEl = cardsContainerEl.current.querySelector(".current--card");
+    const previousCardEl = cardsContainerEl.current.querySelector(".previous--card");
     const nextCardEl = cardsContainerEl.current.querySelector(".next--card");
-    const currentBgImageEl =
-      appBgContainerEl.current.querySelector(".current--image");
-    const previousBgImageEl =
-      appBgContainerEl.current.querySelector(".previous--image");
-    const nextBgImageEl =
-      appBgContainerEl.current.querySelector(".next--image");
+    const currentBgImageEl = appBgContainerEl.current.querySelector(".current--image");
+    const previousBgImageEl = appBgContainerEl.current.querySelector(".previous--image");
+    const nextBgImageEl = appBgContainerEl.current.querySelector(".next--image");
 
     changeInfo(direction);
     swapCardsClass();
 
     removeCardEvents(currentCardEl);
+    removeCardEvents(previousCardEl);
+    removeCardEvents(nextCardEl);
+
+    addCardEvents(currentCardEl);
+    addCardEvents(previousCardEl);
+    addCardEvents(nextCardEl);
 
     function swapCardsClass() {
       currentCardEl.classList.remove("current--card");
       previousCardEl.classList.remove("previous--card");
       nextCardEl.classList.remove("next--card");
+
       currentBgImageEl.classList.remove("current--image");
       previousBgImageEl.classList.remove("previous--image");
       nextBgImageEl.classList.remove("next--image");
+
       currentCardEl.style.zIndex = "50";
-      currentBgImageEl.style.zIndex = "50";
 
       if (direction === "left") {
-        previousCardEl.style.zIndex = "20";
-        previousBgImageEl.style.zIndex = "20";
-        currentCardEl.style.transform = "translateY(-50vh)";
-        currentBgImageEl.style.transform = "translateY(-50vh)";
-        previousCardEl.style.transform = "translateY(-50vh)";
-        previousBgImageEl.style.transform = "translateY(-50vh)";
-
-        setTimeout(() => {
-          nextCardEl.style.transform = "translateY(-50vh)";
-          nextBgImageEl.style.transform = "translateY(-50vh)";
-          currentCardEl.classList.add("next--card");
-          previousCardEl.classList.add("current--card");
-          nextCardEl.classList.add("previous--card");
-          currentBgImageEl.classList.add("next--image");
-          previousBgImageEl.classList.add("current--image");
-          nextBgImageEl.classList.add("previous--image");
-          currentCardEl.style.transform = "translateY(0)";
-          currentBgImageEl.style.transform = "translateY(0)";
-          previousCardEl.style.transform = "translateY(0)";
-          previousBgImageEl.style.transform = "translateY(0)";
-        }, 400);
-      } else if (direction === "right") {
         nextCardEl.style.zIndex = "20";
-        nextBgImageEl.style.zIndex = "20";
-        currentCardEl.style.transform = "translateY(-50vh)";
-        currentBgImageEl.style.transform = "translateY(-50vh)";
-        nextCardEl.style.transform = "translateY(-50vh)";
-        nextBgImageEl.style.transform = "translateY(-50vh)";
+        previousCardEl.style.zIndex = "40";
 
-        setTimeout(() => {
-          previousCardEl.style.transform = "translateY(-50vh)";
-          previousBgImageEl.style.transform = "translateY(-50vh)";
-          currentCardEl.classList.add("previous--card");
-          previousCardEl.classList.add("next--card");
-          nextCardEl.classList.add("current--card");
-          currentBgImageEl.classList.add("previous--image");
-          previousBgImageEl.classList.add("next--image");
-          nextBgImageEl.classList.add("current--image");
-          currentCardEl.style.transform = "translateY(0)";
-          currentBgImageEl.style.transform = "translateY(0)";
-          nextCardEl.style.transform = "translateY(0)";
-          nextBgImageEl.style.transform = "translateY(0)";
-        }, 400);
-      }
-    }
+        currentCardEl.classList.add("next--card");
+        previousCardEl.classList.add("current--card");
+        nextCardEl.classList.add("previous--card");
 
-    function changeInfo(direction) {
-      const currentInfoEl =
-        cardInfosContainerEl.current.querySelector(".current--info");
-      const previousInfoEl =
-        cardInfosContainerEl.current.querySelector(".previous--info");
-      const nextInfoEl =
-        cardInfosContainerEl.current.querySelector(".next--info");
-
-      const currentTextEls = currentInfoEl.querySelectorAll(".text");
-      const previousTextEls = previousInfoEl.querySelectorAll(".text");
-      const nextTextEls = nextInfoEl.querySelectorAll(".text");
-
-      gsap.to(currentTextEls, {
-        duration: 0.3,
-        translateY: "40px",
-        opacity: 0,
-        stagger: 0.1,
-      });
-
-      gsap.to(previousTextEls, {
-        duration: 0.3,
-        translateY: "0",
-        opacity: 1,
-        stagger: 0.1,
-      });
-
-      gsap.to(nextTextEls, {
-        duration: 0.3,
-        translateY: "0",
-        opacity: 1,
-        stagger: 0.1,
-      });
-
-      currentInfoEl.classList.remove("current--info");
-      previousInfoEl.classList.remove("previous--info");
-      nextInfoEl.classList.remove("next--info");
-
-      if (direction === "left") {
-        currentInfoEl.classList.add("next--info");
-        previousInfoEl.classList.add("current--info");
-        nextInfoEl.classList.add("previous--info");
+        currentBgImageEl.classList.add("next--image");
+        previousBgImageEl.classList.add("current--image");
+        nextBgImageEl.classList.add("previous--image");
       } else if (direction === "right") {
-        currentInfoEl.classList.add("previous--info");
-        previousInfoEl.classList.add("next--info");
-        nextInfoEl.classList.add("current--info");
+        previousCardEl.style.zIndex = "20";
+        nextCardEl.style.zIndex = "40";
+
+        currentCardEl.classList.add("previous--card");
+        previousCardEl.classList.add("next--card");
+        nextCardEl.classList.add("current--card");
+
+        currentBgImageEl.classList.add("previous--image");
+        previousBgImageEl.classList.add("next--image");
+        nextBgImageEl.classList.add("current--image");
       }
     }
 
-    function removeCardEvents(card) {
-      const cardClone = card.cloneNode(true);
-      card.parentNode.replaceChild(cardClone, card);
+    gsap.to(cardsContainerEl.current.children, {
+      duration: 1.2,
+      translateX: direction === "left" ? "60%" : "-60%",
+      rotate: direction === "left" ? "-10deg" : "10deg",
+      ease: "power4.inOut",
+      stagger: {
+        amount: 0.4,
+      },
+      onComplete: () => {
+        gsap.set(cardsContainerEl.current.children, {
+          "--card-translateY-offset": "100vh",
+          rotate: 0,
+          translateX: 0,
+        });
+        gsap.set(currentCardEl, { zIndex: "30" });
+
+        addCardEvents(currentCardEl);
+
+        cardsContainerEl.current.appendChild(currentCardEl);
+        cardsContainerEl.current.appendChild(previousCardEl);
+        cardsContainerEl.current.appendChild(nextCardEl);
+
+        appBgContainerEl.current.appendChild(currentBgImageEl);
+        appBgContainerEl.current.appendChild(previousBgImageEl);
+        appBgContainerEl.current.appendChild(nextBgImageEl);
+      },
+    });
+  }
+
+  function changeInfo(direction) {
+    const currentInfoEl = cardInfosContainerEl.current.querySelector(".current--info");
+    const previousInfoEl =  cardInfosContainerEl.current.querySelector(".previous--info");
+    const nextInfoEl =  cardInfosContainerEl.current.querySelector(".next--info");
+
+    const currentTextEls = currentInfoEl.querySelectorAll(".text");
+    const previousTextEls = previousInfoEl.querySelectorAll(".text");
+    const nextTextEls = nextInfoEl.querySelectorAll(".text");
+
+    gsap.to(currentTextEls, {
+      duration: 0.3,
+      translateY: "40px",
+      opacity: 0,
+      stagger: 0.1,
+    });
+  
+    gsap.to(previousTextEls, {
+      duration: 0.3,
+      translateY: "0",
+      opacity: 1,
+      stagger: 0.1,
+    });
+  
+    gsap.to(nextTextEls, {
+      duration: 0.3,
+      translateY: "40px",
+      opacity: 0,
+      stagger: 0.1,
+    });
+
+    currentInfoEl.classList.remove("current--info");
+    previousInfoEl.classList.remove("previous--info");
+    nextInfoEl.classList.remove("next--info");
+
+    if (direction === "left") {
+      currentInfoEl.classList.add("next--info");
+      previousInfoEl.classList.add("current--info");
+      nextInfoEl.classList.add("previous--info");
+    } else if (direction === "right") {
+      previousInfoEl.classList.add("next--info");
+      nextInfoEl.classList.add("current--info");
+      currentInfoEl.classList.add("previous--info");
     }
   }
+
+  function removeCardEvents(card) {
+    card.removeEventListener("mouseenter", handleCardMouseEnter);
+    card.removeEventListener("mouseleave", handleCardMouseLeave);
+  }
+
+  function addCardEvents(card) {
+    card.addEventListener("mouseenter", handleCardMouseEnter);
+    card.addEventListener("mouseleave", handleCardMouseLeave);
+  }
+
+  function handleCardMouseEnter(event) {
+    const card = event.currentTarget;
+    const info = card.querySelector(".text");
+  
+    gsap.to(info, {
+      duration: 0.4,
+      translateY: "0",
+      opacity: 1,
+      ease: "power3.out",
+    });
+  
+    gsap.to(card, {
+      duration: 0.4,
+      scale: 1.03,
+      ease: "power3.out",
+    });
+  
+    gsap.to(card, {
+      "--card-translateY-offset": "0",
+      duration: 1,
+      ease: "elastic.out(1, 0.8)",
+    });
+  
+    gsap.to(appBgContainerEl.current, {
+      duration: 1,
+      scale: 1.03,
+      ease: "elastic.out(1, 0.8)",
+    });
+  
+    gsap.to(cardInfosContainerEl.current, {
+      duration: 0.8,
+      opacity: 0,
+      onComplete: () => {
+        cardInfosContainerEl.current.classList.add("no-pointer-events");
+      },
+    });
+  }
+  
+  function handleCardMouseLeave(event) {
+    const card = event.currentTarget;
+    const info = card.querySelector(".text");
+  
+    gsap.to(info, {
+      duration: 0.4,
+      translateY: "40px",
+      opacity: 0,
+      ease: "power3.out",
+    });
+  
+    gsap.to(card, {
+      duration: 0.4,
+      scale: 1,
+      ease: "power3.out",
+    });
+  
+    gsap.to(card, {
+      "--card-translateY-offset": "100vh",
+      duration: 0.8,
+      ease: "power4.out",
+    });
+  
+    gsap.to(appBgContainerEl.current, {
+      duration: 0.8,
+      scale: 1,
+      ease: "power4.out",
+    });
+  
+    gsap.to(cardInfosContainerEl.current, {
+      duration: 0.8,
+      opacity: 1,
+      onStart: () => {
+        cardInfosContainerEl.current.classList.remove("no-pointer-events");
+      },
+    });
+  }
+  
 
   function init() {
     const tl = gsap.timeline();
@@ -214,7 +301,7 @@ function CardCarousel() {
     tl.to([buttons.current.prev, buttons.current.next], {
       duration: 0.8,
       pointerEvents: "auto",
-      opacity: "1",
+      opacity: "100%",
     }).to(
       cardsContainerEl.current.children,
       {
@@ -226,12 +313,9 @@ function CardCarousel() {
       "-=0.6"
     );
 
-    const currentCardEl =
-      cardsContainerEl.current.querySelector(".current--card");
-    const currentBgImageEl =
-      appBgContainerEl.current.querySelector(".current--image");
-    const currentInfoEl =
-      cardInfosContainerEl.current.querySelector(".current--info");
+    const currentCardEl = cardsContainerEl.current.querySelector(".current--card");
+    const currentBgImageEl = appBgContainerEl.current.querySelector(".current--image");
+    const currentInfoEl = cardInfosContainerEl.current.querySelector(".current--info");
     const currentTextEls = currentInfoEl.querySelectorAll(".text");
 
     gsap.set(currentTextEls, {
@@ -258,21 +342,21 @@ function CardCarousel() {
         <div className="app__bg-container" ref={appBgContainerEl}>
           <div className="app__bg-image current--image">
             <img
-              src="image1.jpg"
+              src="https://source.unsplash.com/Z8dtTatMVMw"
               alt="Background 1"
               className="app__bg-image-inner"
             />
           </div>
           <div className="app__bg-image previous--image">
             <img
-              src="image2.jpg"
+              src="https://source.unsplash.com/9dmycbFE7mQ"
               alt="Background 2"
               className="app__bg-image-inner"
             />
           </div>
           <div className="app__bg-image next--image">
             <img
-              src="image3.jpg"
+              src="https://source.unsplash.com/m7K4KzL5aQ8"
               alt="Background 3"
               className="app__bg-image-inner"
             />
@@ -282,31 +366,31 @@ function CardCarousel() {
 
       <div className="cards">
         <div className="cards__wrapper">
-          <div className="card current--card">
-            <img src="image1.jpg" alt="Card 1" className="card__image" />
+          <div className="card current--card" ref={cardsContainerEl.current}>
+            <img src="https://source.unsplash.com/Z8dtTatMVMw" alt="Card 1" className="card__image" />
           </div>
           <div className="card previous--card">
-            <img src="image2.jpg" alt="Card 2" className="card__image" />
+            <img src="https://source.unsplash.com/9dmycbFE7mQ" alt="Card 2" className="card__image" />
           </div>
           <div className="card next--card">
-            <img src="image3.jpg" alt="Card 3" className="card__image" />
+            <img src="https://source.unsplash.com/m7K4KzL5aQ8" alt="Card 3" className="card__image" />
           </div>
         </div>
 
         <div className="card__info-container" ref={cardInfosContainerEl}>
-          <div className="card__info current--info">
+          <div className="current--info">
             <h2 className="text">Card 1</h2>
             <p className="text">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
           </div>
-          <div className="card__info previous--info">
+          <div className="previous--info">
             <h2 className="text">Card 2</h2>
             <p className="text">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
           </div>
-          <div className="card__info next--info">
+          <div className="next--info">
             <h2 className="text">Card 3</h2>
             <p className="text">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -316,7 +400,7 @@ function CardCarousel() {
 
         <div className="cardList__nav">
           <button className="cardList__btn btn--left">
-            <i className="fa fa-chevron-left"></i>
+            <i class="fa-solid fa-chevron-left"></i>
           </button>
           <button className="cardList__btn btn--right">
             <i className="fa fa-chevron-right"></i>
