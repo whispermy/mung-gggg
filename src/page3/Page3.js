@@ -257,7 +257,7 @@ const CardCarousel = () => {
               backgroundColor: `hsl(${loadProgress * 120}, 100%, 50%`,
             });
 
-            if (totalImages == loadedImages) {
+            if (totalImages === loadedImages) {
               gsap
                 .timeline()
                 .to(".loading__wrapper", {
@@ -382,14 +382,6 @@ const CardCarousel = () => {
           />
         </symbol>
       </svg>
-      <div className="support">
-        <a href="https://twitter.com/DevLoop01" target="_blank">
-          <i className="fab fa-twitter-square" />
-        </a>
-        <a href="https://dribbble.com/devloop01" target="_blank">
-          <i className="fab fa-dribbble" />
-        </a>
-      </div>
     </div>
   );
 };
