@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
 import { styled } from "styled-components";
+import detailIcon from "./detail.png";
+import homeIcon from "./home.png";
 
 export default function Loading02() {
   const audioRef = useRef(null);
@@ -31,8 +33,12 @@ export default function Loading02() {
   `;
 
   const Containerbtn = styled.div`
+  display: grid;
   position: related;
-  bottom: 0%
+  width: 30%; /* 원하는 너비로 조정 */
+  height: 30%; /* 원하는 높이로 조정 */
+  right: 0%;
+  bottom: 0%;
   border: none;
   font-weight: normal;
   font-size: 50px;
@@ -48,8 +54,20 @@ export default function Loading02() {
     /* Add your custom styles here */
     width: 100%;
     background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 1%;
+    border-radius: 1%;
+  `;
+
+  const LinkIcon = styled.img`
+    /* Add your custom styles for the icon here */
+    width: 20%; /* 원하는 너비로 조정 */
+    height: 20%; /* 원하는 높이로 조정 */
+  `;
+
+  const LinkWrapper = styled.div`
+    display: flex; /* 링크를 가로로 정렬하기 위해 추가 */
+    align-items: center; /* 세로 중앙 정렬을 위해 추가 */
+    margin-top: -5%; /* 링크 간의 간격을 조정 */
   `;
 
   {/* TODO: button container create*/}
@@ -88,8 +106,14 @@ export default function Loading02() {
             <AudioPlayer controls ref={audioRef} autoPlay>
               <source src={`${url}/audio.mp3`} type="audio/mpeg" />
             </AudioPlayer>
-            <Link to="/">HOME</Link>
-            <Link to="/page3">Detail</Link>
+            <LinkWrapper>
+              <Link to="/">
+                <LinkIcon src={homeIcon} alt="home"></LinkIcon>
+              </Link>
+              <Link to="/page3">
+                <LinkIcon src={detailIcon} alt="detail page"></LinkIcon>
+              </Link>
+            </LinkWrapper>
           </Containerbtn>
         </Container2>
       </Container>
