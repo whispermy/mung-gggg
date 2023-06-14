@@ -18,8 +18,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.787);
+  background: rgba(0, 0, 0, 0.5) url("https://source.unsplash.com/9dmycbFE7mQ");
+  background-size: cover;
   overflow: hidden;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: rgba(0, 0, 0, 0.5);
 }
 
 button {
