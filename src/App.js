@@ -3,17 +3,16 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Loading02 from './full_wall_paper/full_wall_paper';
 import Home from './home/home';
-import "./page3/Page.css";
-import Page3 from "./page3/test2";
+import CardComponent from "./page3/test2";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
           <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="full_wall_paper" element={<Loading02 />} />
-          <Route path="page3 " element={<Page3 />} />
+          <Route path="page3" element={<CardComponent />} />
+          <Route path="/" element={<Home />} />
         </Routes>
         </BrowserRouter>
     </div>

@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import imagesLoaded from "imagesloaded";
 import React, { useEffect } from "react";
+import "./Page.css";
 
 const CardComponent = () => {
   useEffect(() => {

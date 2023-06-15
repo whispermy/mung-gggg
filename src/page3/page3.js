@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { imagesLoaded } from "imagesloaded";
+import React, { useEffect, useRef } from "react";
 
 const CardCarousel = () => {
   const buttons = useRef(null);
