@@ -110,7 +110,7 @@ export default function Loading02() {
               <Link to="/">
                 <LinkIcon src={homeIcon} alt="home"></LinkIcon>
               </Link>
-              <Link to="/page3">
+              <Link to="../page3">
                 <LinkIcon src={detailIcon} alt="detail page"></LinkIcon>
               </Link>
             </LinkWrapper>

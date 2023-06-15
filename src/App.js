@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Loading02 from './full_wall_paper/full_wall_paper';
 import Home from './home/home';
-import Page3 from './page3/page3';
+import "./page3/Page.css";
+import Page3 from "./page3/test2";
 
 function App() {
   return (
