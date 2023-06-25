@@ -211,7 +211,6 @@ export default function Home() {
             <Card>
               <Content>
                 <Title>Diving in to the Sea</Title>
-                <Copy>coming soon...</Copy>
                 <Link to={pname} state={{data: imgsrc}}> 
                 <Btn>Start ASMR</Btn>
                 </Link>
@@ -220,7 +219,6 @@ export default function Home() {
             <Card>
               <Content>
                 <Title>Rain is falling besides you</Title>
-                <Copy>coming soon...</Copy>
                 <Link to={pname} state={{data: imgsrc}}> 
                 <Btn>Start ASMR</Btn>
                 </Link>
@@ -229,7 +227,6 @@ export default function Home() {
             <Card>
               <Content>
                 <Title>Sip of coffee</Title>
-                <Copy>coming soon...</Copy>
                 <Link to={pname} state={{data: imgsrc}}> 
                 <Btn>Start ASMR</Btn>
                 </Link>
@@ -238,7 +235,6 @@ export default function Home() {
             <Card>
               <Content>
                 <Title>Fantasies around us</Title>
-                <Copy>coming soon...</Copy>
                 <Link to={pname} state={{data: imgsrc}}> 
                 <Btn>Start ASMR</Btn>
                 </Link>
