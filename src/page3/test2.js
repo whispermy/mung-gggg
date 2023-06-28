@@ -2,10 +2,19 @@ import { gsap } from "gsap";
 import imagesLoaded from "imagesloaded";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { styled } from "styled-components";
 import "./../full_wall_paper/full_wall_paper";
 import "./Page.css";
 
 const CardComponent = () => {
+  const Main = styled.div`
+  background-color: #f1f3f5;
+  background-size: cover;
+  background-position: center center;
+  width: 100vw;
+  height: 100vh;
+  `;
+
   const min =1;
   let max= 6;
   let randomNumber1 = Math.floor(Math.random() * (max-min) + min);
@@ -313,127 +322,129 @@ const CardComponent = () => {
   }, []);
 
   return (
-    <div className="app">
-      <div className="cardList">
-        <button className="cardList__btn btn btn--left">
-          <div className="icon">
-            <svg>
-              <use xlinkHref="#arrow-left"></use>
-            </svg>
-          </div>
-        </button>
+      <div className="app">
+        <div className="cardList">
+          <button className="cardList__btn btn btn--left">
+            <div className="icon">
+              <svg>
+                <use xlinkHref="#arrow-left"></use>
+              </svg>
+            </div>
+          </button>
 
-        <div className="cards__wrapper">
-          <div className="card current--card">
-            <div className="card__image">
-              <Link to={pname} state={{data: imgsrc}}>
-                <img src="https://source.unsplash.com/Z8dtTatMVMw" alt="" />
-              </Link>
+          <div className="cards__wrapper">
+            <div className="card current--card">
+              <div className="card__image">
+                <Link to={pname} state={{data: imgsrc}}>
+                  <img src="https://source.unsplash.com/Z8dtTatMVMw" alt="" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="card next--card">
+              <div className="card__image">
+                <Link to={pname} state={{data: imgsrc}}>
+                  <img src="https://source.unsplash.com/9dmycbFE7mQ" alt="" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="card previous--card">
+              <div className="card__image">
+                <Link to={pname} state={{data: imgsrc}}>
+                  <img src="https://source.unsplash.com/m7K4KzL5aQ8" alt="" />
+                </Link>
+              </div>
             </div>
           </div>
 
-          <div className="card next--card">
-            <div className="card__image">
-              <Link to={pname} state={{data: imgsrc}}>
-                <img src="https://source.unsplash.com/9dmycbFE7mQ" alt="" />
-              </Link>
+          <button className="cardList__btn btn btn--right">
+            <div className="icon">
+              <svg>
+                <use xlinkHref="#arrow-right"></use>
+              </svg>
+            </div>
+          </button>
+        </div>
+
+        <div className="infoList">
+          <div className="info__wrapper">
+            <div className="info current--info">
+              <h1 className="text name">Highlands</h1>
+              <h4 className="text location">Scotland</h4>
+              <p className="text description">The mountains are calling</p>
+            </div>
+
+            <div className="info next--info">
+              <h1 className="text name">Machu Pichu</h1>
+              <h4 className="text location">Peru</h4>
+              <p className="text description">Adventure is never far away</p>
+            </div>
+
+            <div className="info previous--info">
+              <h1 className="text name">Chamonix</h1>
+              <h4 className="text location">France</h4>
+              <p className="text description">Let your dreams come true</p>
             </div>
           </div>
+        </div>
 
-          <div className="card previous--card">
-            <div className="card__image">
-              <Link to={pname} state={{data: imgsrc}}>
-                <img src="https://source.unsplash.com/m7K4KzL5aQ8" alt="" />
-              </Link>
+        <div className="app__bg">
+          <Main>
+            <div className="app__bg__image current--image">
+              <img src="https://source.unsplash.com/Z8dtTatMVMw" alt="" />
             </div>
+            <div className="app__bg__image next--image">
+              <img src="https://source.unsplash.com/9dmycbFE7mQ" alt="" />
+            </div>
+            <div className="app__bg__image previous--image">
+              <img src="https://source.unsplash.com/m7K4KzL5aQ8" alt="" />
+            </div>
+          </Main>
+        </div>
+
+        <div className="loading__wrapper">
+          <div className="loader--text">Loading...</div>
+          <div className="loader">
+            <span></span>
           </div>
         </div>
 
-        <button className="cardList__btn btn btn--right">
-          <div className="icon">
-            <svg>
-              <use xlinkHref="#arrow-right"></use>
-            </svg>
-          </div>
-        </button>
+        <svg className="icons" style={{ display: "none" }}>
+          <symbol
+            id="arrow-left"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <polyline
+              points="328 112 184 256 328 400"
+              style={{
+                fill: "none",
+                stroke: "#fff",
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: "48px",
+              }}
+            />
+          </symbol>
+          <symbol
+            id="arrow-right"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <polyline
+              points="184 112 328 256 184 400"
+              style={{
+                fill: "none",
+                stroke: "#fff",
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: "48px",
+              }}
+            />
+          </symbol>
+        </svg>
       </div>
-
-      <div className="infoList">
-        <div className="info__wrapper">
-          <div className="info current--info">
-            <h1 className="text name">Highlands</h1>
-            <h4 className="text location">Scotland</h4>
-            <p className="text description">The mountains are calling</p>
-          </div>
-
-          <div className="info next--info">
-            <h1 className="text name">Machu Pichu</h1>
-            <h4 className="text location">Peru</h4>
-            <p className="text description">Adventure is never far away</p>
-          </div>
-
-          <div className="info previous--info">
-            <h1 className="text name">Chamonix</h1>
-            <h4 className="text location">France</h4>
-            <p className="text description">Let your dreams come true</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="app__bg">
-        <div className="app__bg__image current--image">
-          <img src="https://source.unsplash.com/Z8dtTatMVMw" alt="" />
-        </div>
-        <div className="app__bg__image next--image">
-          <img src="https://source.unsplash.com/9dmycbFE7mQ" alt="" />
-        </div>
-        <div className="app__bg__image previous--image">
-          <img src="https://source.unsplash.com/m7K4KzL5aQ8" alt="" />
-        </div>
-      </div>
-
-      <div className="loading__wrapper">
-        <div className="loader--text">Loading...</div>
-        <div className="loader">
-          <span></span>
-        </div>
-      </div>
-
-      <svg className="icons" style={{ display: "none" }}>
-        <symbol
-          id="arrow-left"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
-        >
-          <polyline
-            points="328 112 184 256 328 400"
-            style={{
-              fill: "none",
-              stroke: "#fff",
-              strokeLinecap: "round",
-              strokeLinejoin: "round",
-              strokeWidth: "48px",
-            }}
-          />
-        </symbol>
-        <symbol
-          id="arrow-right"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
-        >
-          <polyline
-            points="184 112 328 256 184 400"
-            style={{
-              fill: "none",
-              stroke: "#fff",
-              strokeLinecap: "round",
-              strokeLinejoin: "round",
-              strokeWidth: "48px",
-            }}
-          />
-        </symbol>
-      </svg>
-    </div>
   );
 };
 
