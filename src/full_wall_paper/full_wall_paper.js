@@ -9,6 +9,14 @@ export default function Loading02() {
   const audioRef = useRef(null);
   const imgsrc = useLocation();
   const url = imgsrc.state.data;
+  
+  const Main = styled.div`
+  background-color: #f1f3f5;
+  background-size: cover;
+  background-position: center center;
+  width: 100vw;
+  height: 100vh;
+  `;
 
   const Container = styled.div`
   position: absolute;
@@ -90,33 +98,35 @@ export default function Loading02() {
 
   return (
     <div>
-      {/* TODO: image blur and music load */}
-      <Spin>
-        <PropagateLoader color="#36d7b7"
-          loading
-          size={20}
-          speedMultiplier={0.8}
-          />
-      </Spin>
-      {/* TODO: music button create */}
-      {/* TODO: home button create and routing */}
-      <Container>
-        <Container2>
-          <Containerbtn>
-            <AudioPlayer controls ref={audioRef} autoPlay>
-              <source src={`${url}/audio.mp3`} type="audio/mpeg" />
-            </AudioPlayer>
-            <LinkWrapper>
-              <Link to="/">
-                <LinkIcon src={homeIcon} alt="home"></LinkIcon>
-              </Link>
-              <Link to="/page3">
-                <LinkIcon src={detailIcon} alt="detail page"></LinkIcon>
-              </Link>
-            </LinkWrapper>
-          </Containerbtn>
-        </Container2>
-      </Container>
+      <Main>
+        {/* TODO: image blur and music load */}
+        <Spin>
+          <PropagateLoader color="#36d7b7"
+            loading
+            size={20}
+            speedMultiplier={0.8}
+            />
+        </Spin>
+        {/* TODO: music button create */}
+        {/* TODO: home button create and routing */}
+        <Container>
+          <Container2>
+            <Containerbtn>
+              <AudioPlayer controls ref={audioRef} autoPlay>
+                <source src={`${url}/audio.mp3`} type="audio/mpeg" />
+              </AudioPlayer>
+              <LinkWrapper>
+                <Link to="/">
+                  <LinkIcon src={homeIcon} alt="home"></LinkIcon>
+                </Link>
+                <Link to="/page3">
+                  <LinkIcon src={detailIcon} alt="detail page"></LinkIcon>
+                </Link>
+              </LinkWrapper>
+            </Containerbtn>
+          </Container2>
+        </Container>
+      </Main>
     </div>
   );
 };
