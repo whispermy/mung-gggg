@@ -1,9 +1,38 @@
 import { gsap } from "gsap";
 import imagesLoaded from "imagesloaded";
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./../full_wall_paper/full_wall_paper";
 import "./Page.css";
 
 const CardComponent = () => {
+  const min =1;
+  let max= 6;
+  let randomNumber1 = Math.floor(Math.random() * (max-min) + min);
+  switch(randomNumber1) {
+    case 1:
+      max = 5;
+      break;
+    case 2:
+      max = 5;
+      break;
+    case 3:
+      max = 6;
+      break;
+    case 4:
+      max = 4;
+      break;
+    case 5:
+      max = 4;
+      break;
+        
+    default:
+      break;
+  }
+  let randomNumber2 = Math.floor(Math.random() * (max-min) + min);
+  const pname = '/full_wall_paper'
+  const imgsrc = `/img/${randomNumber1}/${randomNumber2}`;
+
   useEffect(() => {
     const buttons = {
       prev: document.querySelector(".btn--left"),
@@ -297,19 +326,25 @@ const CardComponent = () => {
         <div className="cards__wrapper">
           <div className="card current--card">
             <div className="card__image">
-              <img src="https://source.unsplash.com/Z8dtTatMVMw" alt="" />
+              <Link to={pname} state={{data: imgsrc}}>
+                <img src="https://source.unsplash.com/Z8dtTatMVMw" alt="" />
+              </Link>
             </div>
           </div>
 
           <div className="card next--card">
             <div className="card__image">
-              <img src="https://source.unsplash.com/9dmycbFE7mQ" alt="" />
+              <Link to={pname} state={{data: imgsrc}}>
+                <img src="https://source.unsplash.com/9dmycbFE7mQ" alt="" />
+              </Link>
             </div>
           </div>
 
           <div className="card previous--card">
             <div className="card__image">
-              <img src="https://source.unsplash.com/m7K4KzL5aQ8" alt="" />
+              <Link to={pname} state={{data: imgsrc}}>
+                <img src="https://source.unsplash.com/m7K4KzL5aQ8" alt="" />
+              </Link>
             </div>
           </div>
         </div>
